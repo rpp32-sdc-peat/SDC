@@ -24,7 +24,7 @@ export default class Related extends Component {
 
   getAllRelatedProductIds() {
     axios.defaults.headers.common['Authorization'] = this.props.token
-    axios.get(this.props.apiUrl + '/products/'+ this.props.currentProduct + '/related')
+    axios.get('/products/'+ this.props.currentProduct + '/related')
     .then((results) => { this.setState({relatedProductsIdList: results.data},
       () => this.getAllEndPoints())})
   }
@@ -33,7 +33,7 @@ export default class Related extends Component {
     let list = [];
     for (let i = 0; i < this.state.relatedProductsIdList.length; i++) {
       let id = this.state.relatedProductsIdList[i];
-        list.push(this.props.apiUrl + '/products/' + id)
+        list.push('/products/' + id)
     }
     this.setState({
       endPointList: list
