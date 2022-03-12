@@ -26,8 +26,7 @@ class RR extends React.Component {
   }
 
   componentDidMount() {
-    axios.defaults.headers.common['Authorization'] = this.props.token;
-    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=${this.state.sorting}&count=${this.state.count}`)
+    axios.get(`http://3.230.184.160/reviews/?product_id=${this.props.currentProduct}&sort=${this.state.sorting}&count=${this.state.count}`)
     .then((results) => {
       if (results.data.results.length > this.state.count - 1) {
         let limitResults = results.data.results;
@@ -48,7 +47,7 @@ class RR extends React.Component {
       console.log('API get /reviews failed: ', err);
     })
 
-    axios.get(`${this.props.apiUrl}/products/${this.props.currentProduct}`)
+    axios.get(`http://3.230.184.160/products/?product_id=${this.props.currentProduct}`)
     .then((result) => {
       this.setState({
         productName: result.data.name
@@ -58,7 +57,7 @@ class RR extends React.Component {
       console.log(`API get /products/${this.props.currentProduct} failed: `, err);
     })
 
-    axios.get(`${this.props.apiUrl}/reviews/meta/?product_id=${this.props.currentProduct}`)
+    axios.get(`http://3.230.184.160/reviews/meta/?product_id=${this.props.currentProduct}`)
       .then((results) => {
         this.setState({
           meta: results.data
@@ -71,7 +70,7 @@ class RR extends React.Component {
   }
 
   changeSort(e) {
-    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=${e.target.value}&count=${this.state.count}`)
+    axios.get(`http://3.230.184.160/reviews/?product_id=${this.props.currentProduct}&sort=${e.target.value}&count=${this.state.count}`)
       .then((results) => {
         let limitResults = results.data.results.slice();
         limitResults.splice(this.state.count - 1);
@@ -90,7 +89,7 @@ class RR extends React.Component {
       count: this.state.count + 2
     }, () => {
       console.log(this.state.sorting)
-      axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=${this.state.sorting}&count=${this.state.count}`)
+      axios.get(`http://3.230.184.160/reviews/?product_id=${this.props.currentProduct}&sort=${this.state.sorting}&count=${this.state.count}`)
         .then((results) => {
           let limitResults = results.data.results.slice();
           limitResults.splice(this.state.count - 1);
