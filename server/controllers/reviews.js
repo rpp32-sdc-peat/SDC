@@ -1,7 +1,5 @@
 const axios = require('axios');
 
-const url = require('../../config2.js');
-
   //routes should have most complicated get request and a put/post route
   //everything works, something is broke (tests)
 

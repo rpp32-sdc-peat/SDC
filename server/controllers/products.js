@@ -1,7 +1,5 @@
 const axios = require('axios');
 
-const url = require('../../config2.js');
-
 module.exports = {
   getProduct: async (req, res) => {
     await axios.get(`http://3.230.184.160:3000/products/?product_id=${req.query.product_id}`)
