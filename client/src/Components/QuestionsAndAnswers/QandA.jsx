@@ -33,7 +33,7 @@ class QandA extends React.Component {
     })
     .catch((err) => { console.log('Error getting questions from API: ' + err) });
 
-    axios.get(this.props.apiUrl + '/products/' + this.props.currentProduct, {
+    axios.get('/products/' + this.props.currentProduct, {
       headers: {
         'Authorization': this.props.token
       },
