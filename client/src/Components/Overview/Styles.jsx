@@ -8,7 +8,7 @@ class Styles extends React.Component {
   render() {
     return (<div className="ov-styles-container">{this.props.thumbnails ?
       this.props.thumbnails.map((image, id) => {
-      return <img className='ov-styles' id={id} height='100px' width='100px' key={'style' + id} src={image} onClick={(e) =>
+      return <img className='ov-styles' id={id} height='100px' width='100px' key={'style' + id} src={image.replace(/"/g, '')} onClick={(e) =>
         {this.props.changeStyle(e);
         this.props.trackClicks(e, 'Overview');
       }} alt={this.props.styles[id].name} title={this.props.styles[id].name}></img>
