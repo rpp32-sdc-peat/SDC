@@ -114,9 +114,9 @@ class Overview extends React.Component {
     axios.get('/products/' + this.props.currentProduct + '/styles')
       .then((results) => {
         //set photos to API results at current index at photos array at current style index
-        this.setState({ prevPhotoUrl: results.data.results[0].photos[results.data.results[0].photos.length - 1].url })
-        this.setState({ currentPhotoUrl: results.data.results[0].photos[0].url })
-        this.setState({ nextPhotoUrl: results.data.results[0].photos[1].url })
+        this.setState({ prevPhotoUrl: JSON.parse(results.data.results[0].photos[results.data.results[0].photos.length - 1].url) })
+        this.setState({ currentPhotoUrl: JSON.parse(results.data.results[0].photos[0].url) })
+        this.setState({ nextPhotoUrl: JSON.parse(results.data.results[0].photos[1].url) })
         this.setState({ styles: results.data.results });
         this.setState({ inventory: results.data.results[0].skus })
         this.setState({ maxLength: results.data.results.map(id => id.photos).length })
