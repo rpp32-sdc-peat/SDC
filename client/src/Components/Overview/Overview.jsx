@@ -135,7 +135,7 @@ class Overview extends React.Component {
   render() {
     var modal;
     if (this.state.modalOn) {
-      modal = <Modal trackClicks={this.props.trackClicks} productInfo={this.state.productInfo} photos={this.state.styles[this.state.currentStyle].photos} currentPhotoUrl={this.state.currentPhotoUrl} toggleModal={this.toggleModal} changePhoto={this.changePhoto} />
+      modal = <Modal trackClicks={this.props.trackClicks} productInfo={this.state.productInfo} photos={this.state.styles[this.state.currentStyle].photos} currentPhotoUrl={JSON.parse(this.state.currentPhotoUrl)} toggleModal={this.toggleModal} changePhoto={this.changePhoto} />
     } else {
       modal = null;
     }
@@ -143,8 +143,8 @@ class Overview extends React.Component {
       <div className='ov-main'>
         {modal}
         <div>
-          <Gallery trackClicks={this.props.trackClicks} productInfo={this.state.productInfo} currentPhotoUrl={this.state.currentPhotoUrl} currentPhotoId={this.state.currentPhotoId} prevPhotoUrl={this.state.prevPhotoUrl} prevPhotoId={this.state.prevPhotoId} nextPhotoUrl={this.state.nextPhotoUrl} nextPhotoId={this.state.nextPhotoId} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto} toggleModal={this.toggleModal} maxLength={this.state.maxLength} />
-          <Styles trackClicks={this.props.trackClicks} thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles} />
+          <Gallery trackClicks={this.props.trackClicks} productInfo={this.state.productInfo} currentPhotoUrl={JSON.parse(this.state.currentPhotoUrl)} currentPhotoId={this.state.currentPhotoId} prevPhotoUrl={JSON.parse(this.state.prevPhotoUrl)} prevPhotoId={this.state.prevPhotoId} nextPhotoUrl={JSON.parse(this.state.nextPhotoUrl)} nextPhotoId={this.state.nextPhotoId} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto} toggleModal={this.toggleModal} maxLength={this.state.maxLength} />
+          <Styles trackClicks={this.props.trackClicks} thumbnails={this.state.styles.map(style => style.photos).map(arr => JSON.parse(arr[0].thumbnail_url))} changeStyle={this.changeStyle} styles={this.state.styles} />
           <Cart trackClicks={this.props.trackClicks} inventory={Object.entries(this.state.inventory)} addToCart={this.addToCart} />
           <Description productInfo={this.state.productInfo} avgRating={this.state.avgRating} />
         </div>
